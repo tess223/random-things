@@ -1,25 +1,34 @@
 <template>
-  <div class="flex h-screen bg-gray-50 overflow-hidden">
-    <!-- 侧边菜单 -->
-    <aside class="w-64 bg-white shadow-md overflow-y-auto">
-      <MenuComponent />
-    </aside>
+  <Layout>
+    <!-- 左侧导航栏内容 -->
+    <template #nav>
+      <!-- 你可以将 el-sub-menu 单独抽出组件 NavMenu.vue -->
+      <NavMenu />
+    </template>
 
-    <!-- 主内容区域 -->
-    <main class="flex-1 overflow-y-auto p-6">
-      <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold text-gray-800">欢迎来到主页面</h1>
-        <div v-if="authStore.user" class="text-gray-600">
-          当前用户: {{ authStore.user.username }}
-        </div>
-      </div>
-      <CardList />
-    </main>
-  </div>
+    <!-- 顶部标题 -->
+    <template #header>
+      <h1 class="text-xl font-semibold text-gray-800">Tess's Blog</h1>
+    </template>
+
+    <!-- 右侧菜单 -->
+    <template #menu>
+      <MenuComponent />
+    </template>
+
+    <!-- 主体内容 -->
+    <CardList />
+
+    <!-- Footer（可选自定义） -->
+    <template #footer>
+      <p class="text-gray-500">© 2025 Tess Lin. Dashboard Module.</p>
+    </template>
+  </Layout>
 </template>
 
 <script setup>
 // 引入菜单组件
+import Layout from '@/components/layout.vue'
 import MenuComponent from '@/components/menus.vue'
 import { useAuthStore } from '@/utils/auth'
 import CardList from '@/components/cardlist.vue'

@@ -53,7 +53,6 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   const authStore = useAuthStore()
-  await authStore.init() // 确保 token 已加载
 
   const isAuthenticated = !!authStore.token
   console.log(`Navigating to ${to.path}, auth: ${isAuthenticated}`)

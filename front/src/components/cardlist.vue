@@ -46,7 +46,7 @@ const cards = [
   font-family: "Raleway", sans-serif;
   font-size: 24px;
   font-weight: 700;
-  color: #5D4037;
+  color: #3b82f6;
   text-align: center;
   margin-top: 20px;
 }

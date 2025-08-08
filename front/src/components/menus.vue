@@ -55,6 +55,8 @@ const logout = () => {
 <style scoped>
 .menu-container {
   position: absolute;
+  color:#072452;
+  background-color: #fff;
   top: 20px;
   right: 20px;
   z-index: 1000;
@@ -63,7 +65,7 @@ const logout = () => {
 
 .el-dropdown-link {
   cursor: pointer;
-  color: var(--el-color-primary);
+  color: #3b82f6;
   display: flex;
   align-items: center;
 }

@@ -1,38 +1,61 @@
 // stores/auth.js
 import { defineStore } from 'pinia' 
+import { login, register, getProfile } from '@/api/user';
+
 export const useAuthStore = defineStore('auth', {
   state: () => ({
-    user: null,
-    token: null
+    token: localStorage.getItem('token') || '',
+    userInfo: JSON.parse(localStorage.getItem('userInfo') || '{}')
   }),
   actions: {
+    // 修改方法名为 login
     async login(credentials) {
-      // 临时模拟接口，无需 fetch
-      if (
-        credentials.username === 'user' &&
-        credentials.password === '123456'
-      ) {
-        this.user = { username: 'user' }
-        this.token = 'mocked-token'
-        localStorage.setItem('token', this.token)
-        return
-      }
-
-      throw new Error('用户名或密码错误')
-    },
-
-    init() {
-      const savedToken = localStorage.getItem('token')
-      if (savedToken) {
-        this.token = savedToken
-        this.user = { username: 'user' } // 简化处理，实际应该从token解析或请求用户信息
+      try {
+        const res = await login(credentials);
+        if (res.success) {
+          this.token = res.data.token;
+          this.userInfo = res.data.user;
+          localStorage.setItem('token', res.data.token);
+          localStorage.setItem('userInfo', JSON.stringify(res.data.user));
+          return res;
+        } else {
+          throw new Error(res.message || '登录失败');
+        }
+      } catch (error) {
+        throw new Error(error.response?.data?.message || error.message || '登录失败');
       }
     },
-    
+    // 修改方法名为 register
+    async register(data) {
+      try {
+        const res = await register(data);
+        if (res.success) {
+          return res;
+        } else {
+          throw new Error(res.message || '注册失败');
+        }
+      } catch (error) {
+        throw new Error(error.response?.data?.message || error.message || '注册失败');
+      }
+    },
+    async getProfileAction() {
+      try {
+        const res = await getProfile();
+        this.userInfo = res.data.user;
+        localStorage.setItem('userInfo', JSON.stringify(res.data.user));
+      } catch (error) {
+        console.error('获取用户信息失败:', error);
+      }
+    },
     logout() {
-      this.user = null
-      this.token = null
-      localStorage.removeItem('token')
+      this.token = '';
+      this.userInfo = {};
+      localStorage.removeItem('token');
+      localStorage.removeItem('userInfo');
     }
+  },
+  getters: {
+    isLoggedIn: (state) => !!state.token,
+    user: (state) => state.userInfo
   }
-})
+});
