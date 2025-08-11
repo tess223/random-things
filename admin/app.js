@@ -39,8 +39,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-// 404处理
-app.use('*', (req, res) => {
+// 404处理（修改这里，避免 path-to-regexp@8 报错）
+app.all('*', (req, res) => {
   res.status(404).json({ 
     success: false, 
     message: '接口不存在' 
