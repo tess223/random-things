@@ -55,18 +55,25 @@ const logout = () => {
 <style scoped>
 .menu-container {
   position: absolute;
-  color:#072452;
+  color: #072452;
   background-color: #fff;
-  top: 20px;
-  right: 20px;
+  top: 15px;
+  right: 15px;
   z-index: 1000;
-  padding: 20px;
+  padding: 8px 12px; /* 缩小内边距 */
+  border-radius: 6px; /* 圆角更柔和 */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* 轻微阴影 */
 }
 
 .el-dropdown-link {
+  font-size: 14px; /* 缩小字体 */
   cursor: pointer;
   color: #3b82f6;
   display: flex;
   align-items: center;
+}
+
+.el-icon {
+  margin-left: 4px; /* 图标与文字间距 */
 }
 </style>

@@ -1,28 +1,18 @@
 <template>
   <Layout>
     <!-- 左侧导航栏内容 -->
-    <template #nav>
-      <!-- 你可以将 el-sub-menu 单独抽出组件 NavMenu.vue -->
-      <NavMenu />
-    </template>
 
     <!-- 顶部标题 -->
     <template #header>
-      <h1 class="text-xl font-semibold text-gray-800">Tess's Blog</h1>
+      <h1 class="text-6xl font-semibold text-gray-800">Tess's Blog</h1>
     </template>
 
     <!-- 右侧菜单 -->
-    <template #menu>
-      <MenuComponent />
-    </template>
 
     <!-- 主体内容 -->
     <CardList />
 
     <!-- Footer（可选自定义） -->
-    <template #footer>
-      <p class="text-gray-500">© 2025 Tess Lin. Dashboard Module.</p>
-    </template>
   </Layout>
 </template>
 
