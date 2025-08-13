@@ -26,6 +26,7 @@
         <!-- 右上角菜单 -->
         <MenuComponent />
       </el-main>
+  
 
       <!-- Footer -->
       <el-footer height="50px" class="text-center text-gray-500 bg-white shadow-inner">
@@ -74,7 +75,7 @@ import MenuComponent from './menus.vue';
   justify-content: center; /* 居中内容 */
   width: 100%;
   box-sizing: border-box;
-  padding: 0 20px; /* 让内容两边有呼吸空间 */
+  padding: 0 0px; /* 让内容两边有呼吸空间 */
 }
 
 .main-content {

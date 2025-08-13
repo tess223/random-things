@@ -85,6 +85,18 @@ const activeMenu = ref('1-1') // 默认激活的菜单项
 // 菜单选择处理
 const handleMenuSelect = (index) => {
   console.log('Selected menu:', index)
+  switch (index) {
+    case '1-1':
+      router.push('/option1')
+      break
+    case '1-2':
+      router.push('/option2')
+      break
+    case '2-1': 
+      break
+    default:
+      ElMessage.warning('未知操作')
+  }
   // 这里可以添加路由跳转逻辑
   // 例如：router.push('/some-route')
 }

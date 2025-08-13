@@ -19,7 +19,6 @@
 <script setup>
 // 引入菜单组件
 import Layout from '@/components/layout.vue'
-import MenuComponent from '@/components/menus.vue'
 import { useAuthStore } from '@/utils/auth'
 import CardList from '@/components/cardlist.vue'
 

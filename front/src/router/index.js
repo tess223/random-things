@@ -43,6 +43,14 @@ const routes = [
       requiresAuth: true
     }
   },
+  {
+    path: '/option1',
+    name: 'Option1',
+    component: () => import('@/pages/option1.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },
 
 ]
 
