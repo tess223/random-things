@@ -1,11 +1,19 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const cors = require('cors');
-require('./config/db'); // 连接数据库
+import dotenv from 'dotenv';
+dotenv.config(); // 确保这行在所有其他 import 之前
+
+import express from 'express';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import './config/db.js'; // 这会执行 db.js 中的连接逻辑
+
+// 路由
+import userRoutes from './routes/user.js';
+import moodRoutes from './routes/mood.js';
+import aiRoutes from './routes/ai.js'; // 引入AI路由
 
 const app = express();
-const PORT = 3333;
+const PORT = process.env.PORT || 3333;
 
 // 中间件
 app.use(cors());
@@ -13,9 +21,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// 路由
-const userRoutes = require('./routes/user');
+// 注册路由
 app.use('/api/users', userRoutes);
+app.use('/api/moods', moodRoutes);
+app.use('/api/ai', aiRoutes); // 使用AI路由
 
 // 基础路由
 app.get('/', (req, res) => {
@@ -25,7 +34,13 @@ app.get('/', (req, res) => {
       register: 'POST /api/users/register',
       login: 'POST /api/users/login',
       profile: 'GET /api/users/profile',
-      users: 'GET /api/users/users'
+      users: 'GET /api/users/users',
+      moods: {
+        create: 'POST /api/moods',
+        list: 'GET /api/moods',
+        delete: 'DELETE /api/moods/:id'
+      },
+      ai: 'POST /api/ai/ask'
     }
   });
 });
@@ -39,7 +54,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-// 404处理（修改这里，避免 path-to-regexp@8 报错）
+// 404处理
 app.all('*', (req, res) => {
   res.status(404).json({ 
     success: false, 
@@ -51,4 +66,4 @@ app.listen(PORT, () => {
   console.log(`服务器运行在 http://localhost:${PORT}`);
 });
 
-module.exports = app;
+export default app; // 使用 export default

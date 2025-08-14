@@ -1,6 +1,7 @@
-const express = require('express');
-const jwt = require('jsonwebtoken');
-const User = require('../models/user');
+import express from 'express';
+import User from '../models/user.js'; // 确保路径和.js后缀正确
+import jwt from 'jsonwebtoken';
+
 const router = express.Router();
 
 // JWT密钥（实际项目中应该放在环境变量中）
@@ -220,4 +221,4 @@ router.get('/users', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -51,6 +51,22 @@ const routes = [
       requiresAuth: true
     }
   },
+  {
+    path: '/aichat',
+    name: 'AIChat',
+    component: () => import('@/pages/aichat.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/spinner',
+    name: 'Spinner',
+    component: () => import('@/pages/spinner.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },
 
 ]
 

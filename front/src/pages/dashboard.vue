@@ -26,11 +26,5 @@ const authStore = useAuthStore()
 </script>
 
 <style scoped>
-/* 可以根据需要调整样式 */
-aside {
-  height: 0vh;
-  position: sticky;
-  top: 0px;
-}
 </style>
     
