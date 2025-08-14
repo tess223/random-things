@@ -47,3 +47,5 @@ pnpm dev
 - [Multer](https://www.npmjs.com/package/multer)
 - [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 - [Postman](https://www.postman.com/)
+
+![架构图](C:\Users\frfrn\Downloads\blow_flow_chart.png)
